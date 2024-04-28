@@ -60,8 +60,6 @@ def get_args_parser():
     parser.set_defaults(model_ema=True)
     parser.add_argument('--model-ema-decay', type=float, default=0.99996, help='')
     parser.add_argument('--model-ema-force-cpu', action='store_true', default=False, help='')
-    parser.add_argument('--set_ln_eval', action='store_true', default=False,
-                        help='set BN layers to eval mode during finetuning.')
 
     #Optimizer parameters
     parser.add_argument('--lr', type=float, default=1e-5)
@@ -96,6 +94,11 @@ def get_args_parser():
     parser.add_argument('--no-pin-mem', action='store_false', dest='pin_mem',
                         help='')
     parser.set_defaults(pin_mem=True)
+
+    # Finetuning params
+    parser.add_argument('--freeze_layers', type=bool, default=False, help='freeze layers')
+    parser.add_argument('--set_ln_eval', action='store_true', default=False,
+                        help='set BN layers to eval mode during finetuning.')
 
     # training parameters
     parser.add_argument('--world_size', default=1, type=int,
@@ -173,6 +176,13 @@ def main(args):
 
     model = build_model(args)
 
+    if args.freeze_layers:
+        for name, para in model.named_parameters():
+            if 'fc' not in name:
+                para.requires_grad_(False)
+            else:
+                print('training {}'.format(name))
+
     model.to(device)
 
     model_ema = None
@@ -190,6 +200,7 @@ def main(args):
         model = torch.nn.parallel.DistributedDataParallel(
             model, device_ids=[args.gpu])
         model_without_ddp = model.module
+
     n_parameters = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print('number of params:', n_parameters)
 

@@ -2,7 +2,6 @@ import transformers
 import torch.nn as nn
 
 
-
 class BERT_BASE_UNCASED(nn.Module):
     def __init__(self, bert_path, num_classes, **kwargs):
         super(BERT_BASE_UNCASED, self).__init__()
