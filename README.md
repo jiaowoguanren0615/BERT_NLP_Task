@@ -4,6 +4,7 @@
 This is a warehouse for BERT-Pytorch-model, can be used to train your text dataset for NLP tasks
 
 ## Preparation
+### [Install Packages & Configuration](https://github.com/jiaowoguanren0615/PytorchLearning)
 ### Download the dataset: 
 [commonlitreadabilityprize](https://www.kaggle.com/competitions/commonlitreadabilityprize/data).
 
