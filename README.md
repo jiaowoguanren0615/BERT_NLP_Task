@@ -24,7 +24,8 @@ This is a warehouse for BERT-Pytorch-model, can be used to train your text datas
 ```
 
 ## Precautions
-Before you use the code to train your own data set, please first enter the ___train_gpu.py___ file and modify the ___data_root___, ___batch_size___, ___num_workers___ and ___nb_classes___ parameters. 
+<1> Before you use the code to train your own data set, please first enter the ___train_gpu.py___ file and modify the ___data_root___, ___batch_size___, ___num_workers___ and ___nb_classes___ parameters.  
+<2> Among the parameter of ___freeze_layers___, it means that if you don't have enough gpu-memory, you can set this to True, freeze the weight of the rest of the layers except for the last layer of classification headers, and do not update the parameters, if you have enough gpu-memory, you can set it to False, do not freeze the weight.
 
 ## Train this model
 
