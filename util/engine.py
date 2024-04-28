@@ -69,7 +69,7 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.MSELoss,
             model_ema.update(model)
 
         learning_rate = optimizer.param_groups[0]["lr"]
-        metric_logger.update(loss=loss_value)
+        metric_logger.update(train_loss=loss_value)
         metric_logger.update(lr=learning_rate)
 
 

@@ -88,11 +88,11 @@ def build_model(args):
     assert args.model.upper() in ['BERT_BASE_UNCASED', 'BERT_LARGE_UNCASED', 'DBERT_BASE_UNCASED'], \
         'You must choose one of these models'
 
-    if args.model.upper == 'BERT_BASE_UNCASED':
+    if args.model.upper() == 'BERT_BASE_UNCASED':
         model = BERT_BASE_UNCASED(args.bert_path, args.nb_classes)
-    elif args.model.upper == 'BERT_LARGE_UNCASED':
+    elif args.model.upper() == 'BERT_LARGE_UNCASED':
         model = BERT_LARGE_UNCASED(args.bert_path, args.nb_classes)
-    elif args.model.upper == 'DBERT_BASE_UNCASED':
+    elif args.model.upper() == 'DBERT_BASE_UNCASED':
         model = BERT_BASE_UNCASED(args.bert_path, args.nb_classes)
     else:
         model = BERT_LARGE_UNCASED(args.bert_path, args.nb_classes)
