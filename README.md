@@ -10,7 +10,7 @@ This is a warehouse for BERT-Pytorch-model, can be used to train your text datas
 ## Project Structure
 ```
 ├── datasets: Load datasets
-    ├── my_dataset.py: Customize reading data sets and define transforms data enhancement methods
+    ├── mydataset.py: Customize reading data sets and define transforms data enhancement methods
 ├── models: BERT Model
     ├── build_models.py: Construct BERT models(bert-base, bert-large, dbert-base)
 ├── util:
@@ -25,7 +25,8 @@ This is a warehouse for BERT-Pytorch-model, can be used to train your text datas
 
 ## Precautions
 <1> Before you use the code to train your own data set, please first enter the ___train_gpu.py___ file and modify the ___data_root___, ___batch_size___, ___num_workers___ and ___nb_classes___ parameters.  
-<2> Among the parameter of ___freeze_layers___, it means that if you don't have enough gpu-memory, you can set this to True, freeze the weight of the rest of the layers except for the last layer of classification headers, and do not update the parameters, if you have enough gpu-memory, you can set it to False, do not freeze the weight.
+<2> The parameter of ___freeze_layers___, it means that if you don't have enough gpu-memory, you can set this to True, freeze the weight of the rest of the layers except for the last layer of classification headers, and do not update the parameters, if you have enough gpu-memory, you can set it to False, not freeze the pretrained-bert's weight.  
+<3> You should modify the columns' names(build_dataset function) in ___mydataset.py___ according to your own text-data.
 
 ## Train this model
 
